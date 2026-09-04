@@ -79,7 +79,7 @@ class CustomerView :
         name = self.name_var.get()
         phone_number = self.phone_var.get()
         if not hasattr(self, "id_var")or self.id_var is None:
-            messagebox.showinfo("Error","Please select a customer.")
+            messagebox.showerror("Error","Please select a customer.")
             return
         success, message = self.controller.update_customer(self.user[0],self.id_var,name,phone_number)
         if success:
@@ -92,7 +92,7 @@ class CustomerView :
 
     def _delete_customer(self):
         if not hasattr(self, "id_var") or self.id_var is None:
-            messagebox.showinfo("Error","Please select a customer.")
+            messagebox.showerror("Error","Please select a customer.")
             return
         success, message = self.controller.delete_customer(self.id_var,self.user[0])
         if success:
