@@ -65,6 +65,7 @@ class ProductView :
         self.category_var.set("")
         self.price_var.set(0)
         self.stock_var.set(0)
+        self.id_var = None
 
     def _select(self,event):
         selected = self.table.focus()
@@ -94,6 +95,9 @@ class ProductView :
         category = self.category_var.get()
         price = self.price_var.get()
         stock = self.stock_var.get()
+        if not hasattr(self, 'id_var') or self.id_var is None:
+            messagebox.showerror("Error","please select a product")
+            return
         success , message = self.controller.update_product(self.user[0],self.id_var,name,category,price,stock)
         if success:
             messagebox.showinfo("Success",message)
@@ -104,6 +108,9 @@ class ProductView :
 
 
     def _delete(self):
+        if not hasattr(self, 'id_var') or self.id_var is None:
+            messagebox.showerror("Error","please select a product")
+            return
         success , message = self.controller.delete_product(self.user[0],self.id_var)
         if success:
             messagebox.showinfo("Success",message)
