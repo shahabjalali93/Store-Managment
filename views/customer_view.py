@@ -94,7 +94,7 @@ class CustomerView :
         if not hasattr(self, "id_var") or self.id_var is None:
             messagebox.showinfo("Error","Please select a customer.")
             return
-        success, message = self.controller.delete_customer(self.user[0],self.id_var)
+        success, message = self.controller.delete_customer(self.id_var,self.user[0])
         if success:
             self._load()
             self._clear()
