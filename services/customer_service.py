@@ -16,7 +16,7 @@ class CustomerService:
         self.log_svc.log(user_id,'Added new customer',f'Customer {name} {phone_number} has been added')
 
 
-    def update_customer(self,id,user_id,name,phone_number):
+    def update_customer(self,user_id,id,name,phone_number):
         if not validate_name(name):
             raise InvalidCustomerDataException('Invalid customer name')
         if not validate_phone(phone_number):
