@@ -28,7 +28,7 @@ class ProductService:
         self.repo.update(id,name,category,price,stock)
         self.log_svs.log(user_id,'Updated Product',f"Product {name} Saved")
 
-    def delete_product(self, id, user_id):
+    def delete_product(self, user_id, id):
         product = self.repo.find_by_id(id)
         if not product:
             raise ProductNotFoundException(f'Product {id} not found')
