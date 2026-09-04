@@ -50,13 +50,15 @@ class CustomerView :
     def _clear(self):
         self.name_var.set("")
         self.phone_var.set("")
+        self.id_var = None
+
 
 
     def _select(self,event):
         selected = self.table.focus()
         if selected:
             value = self.table.item(selected,"values")
-            self.id_var = value[0]
+            self.id_var = int(value[0])
             self.name_var.set(value[1])
             self.phone_var.set(value[2])
 
@@ -76,6 +78,9 @@ class CustomerView :
     def _update_customer(self):
         name = self.name_var.get()
         phone_number = self.phone_var.get()
+        if not hasattr(self, "id_var")or self.id_var is None:
+            messagebox.showinfo("Error","Please select a customer.")
+            return
         success, message = self.controller.update_customer(self.user[0],self.id_var,name,phone_number)
         if success:
             self._load()
@@ -86,6 +91,9 @@ class CustomerView :
 
 
     def _delete_customer(self):
+        if not hasattr(self, "id_var") or self.id_var is None:
+            messagebox.showinfo("Error","Please select a customer.")
+            return
         success, message = self.controller.delete_customer(self.user[0],self.id_var)
         if success:
             self._load()
@@ -107,4 +115,6 @@ class CustomerView :
 
         else:
             messagebox.showerror("Error",customer)
+
+
 

@@ -71,7 +71,7 @@ class ProductView :
         selected = self.table.focus()
         if selected:
             value = self.table.item(selected,"values")
-            self.id_var = value[0]
+            self.id_var = int(value[0])
             self.name_var.set(value[1])
             self.category_var.set(value[2])
             self.price_var.set(value[3])
